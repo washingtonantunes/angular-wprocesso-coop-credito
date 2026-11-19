@@ -19,4 +19,3 @@ export default withNativeFederation({
   skip: ['rxjs/ajax', 'rxjs/fetch', 'rxjs/testing', 'rxjs/webSocket'],
   features: { denseChunking: true },
 });
-
