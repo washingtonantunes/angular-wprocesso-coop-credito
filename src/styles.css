@@ -1,0 +1,60 @@
+body {
+  margin: 0;
+  color: var(--p-text-color);
+  background: #f3f8f6;
+  font-family: 'Inter', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+html {
+  font-size: 12px;
+}
+
+/* Bloco de filtros das telas de listagem. */
+.filtros-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+.filtros-toolbar > * {
+  flex: 1 1 12rem;
+  min-width: 10rem;
+}
+
+.filtros-toolbar > .filtros-acoes {
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+/* Espaçamento padrão para o par p-checkbox + label em formulários/modais. */
+.form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+}
+
+/* Área rolável vertical padrão do sistema. */
+.scroll-y-fino {
+  max-height: 45vh;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.scroll-y-fino::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scroll-y-fino::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.scroll-y-fino::-webkit-scrollbar-track {
+  background: transparent;
+}
