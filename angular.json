@@ -20,7 +20,9 @@
             "projectName": "angular-wprocesso-coop-credito",
             "tsConfig": "tsconfig.federation.json",
             "cacheExternalArtifacts": true,
-            "entryPoints": ["src/main.ts"]
+            "entryPoints": [
+              "src/main.ts"
+            ]
           },
           "configurations": {
             "production": {
@@ -44,7 +46,9 @@
             "dev": true,
             "devServer": true,
             "port": 0,
-            "entryPoints": ["src/main.ts"]
+            "entryPoints": [
+              "src/main.ts"
+            ]
           }
         },
         "extract-i18n": {
@@ -54,7 +58,10 @@
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
-            "polyfills": ["zone.js", "es-module-shims"],
+            "polyfills": [
+              "zone.js",
+              "es-module-shims"
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "css",
             "assets": [
@@ -64,7 +71,11 @@
               },
               "src/assets"
             ],
-            "styles": ["src/styles.css", "node_modules/primeicons/primeicons.css", "node_modules/primeflex/primeflex.css"],
+            "styles": [
+              "src/styles.css",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeflex/primeflex.css"
+            ],
             "preserveSymlinks": true
           },
           "configurations": {
@@ -96,16 +107,18 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular-wprocesso-coop-credito:build:production"
+              "buildTarget": "angular-wprocesso-coop-credito:esbuild:production"
             },
             "development": {
-              "buildTarget": "angular-wprocesso-coop-credito:build:development"
+              "buildTarget": "angular-wprocesso-coop-credito:esbuild:development"
             }
           },
           "defaultConfiguration": "development",
           "options": {
             "prebundle": {
-              "exclude": ["angular-wprocesso-coop-ui"]
+              "exclude": [
+                "angular-wprocesso-coop-ui"
+              ]
             },
             "port": 4202
           }
@@ -113,7 +126,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }
@@ -121,7 +137,10 @@
   },
   "cli": {
     "analytics": false,
-    "schematicCollections": ["angular-eslint", "@angular-eslint/schematics"]
+    "schematicCollections": [
+      "angular-eslint",
+      "@angular-eslint/schematics"
+    ]
   },
   "schematics": {
     "@schematics/angular:component": {

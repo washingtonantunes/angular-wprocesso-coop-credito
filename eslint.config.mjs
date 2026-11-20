@@ -56,7 +56,7 @@ export default [
       // Gerais
       'no-trailing-spaces': 'error',
       'no-multiple-empty-lines': ['error', { max: 1 }],
-      'no-console': 'warn',
+      'no-console': ['warn', { allow: ['error', 'warn'] }],
       'no-unused-vars': 'off',
       'no-var': 'error',
       'prefer-const': 'error',
