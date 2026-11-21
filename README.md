@@ -1,6 +1,6 @@
 # angular-wprocesso-coop-credito
 
-Aplicação remota da área de Crédito. Publica as exposições `./central` e `./cooperativa` para as duas cascas do wprocesso-coop. Nesta entrega, cada exposição contém apenas uma página de prova protegida por sua funcionalidade de consulta.
+Aplicação remota da área de Crédito. Publica as exposições `./central` e `./cooperativa` para as duas cascas do wprocesso-coop. Cada exposição contém uma página da área de Crédito protegida pela sua funcionalidade de consulta.
 
 ## Execução
 
