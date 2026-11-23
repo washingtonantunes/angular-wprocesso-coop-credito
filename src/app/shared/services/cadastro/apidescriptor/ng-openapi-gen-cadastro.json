@@ -1,0 +1,6 @@
+{
+  "input": "src/app/shared/services/cadastro/apidescriptor/api-cadastro.json",
+  "output": "src/app/shared/services/cadastro/api",
+  "ignoreUnusedModels": true,
+  "includeTags": ["Cooperado"]
+}

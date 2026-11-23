@@ -1,0 +1,87 @@
+<div class="p-fluid grid">
+  <div class="col-12 px-6 py-6">
+    <div class="mb-4">
+      <h2 class="text-900 font-semibold text-xl m-0">Crédito Rural</h2>
+    </div>
+
+    <p-toolbar class="mb-4">
+      <ng-template pTemplate="left">
+        <div class="filtros-toolbar">
+          <div class="flex flex-column">
+            <label class="block text-700 font-medium mb-2">Status</label>
+            <p-select
+              [(ngModel)]="filtroStatus"
+              [options]="statusOptions"
+              optionLabel="label"
+              optionValue="value"
+              placeholder="Todos"
+              [showClear]="true"
+              appendTo="body"
+            />
+          </div>
+
+          <div class="flex flex-column">
+            <label class="block text-700 font-medium mb-2">Cooperativa</label>
+            <input pInputText placeholder="Nome da cooperativa" [(ngModel)]="filtroCooperativa" />
+          </div>
+
+          <div class="flex flex-column">
+            <label class="block text-700 font-medium mb-2">Cooperado</label>
+            <input pInputText placeholder="Nome do cooperado" [(ngModel)]="filtroCooperado" />
+          </div>
+
+          <div class="filtros-acoes flex gap-2 align-items-end">
+            <p-button label="Limpar" icon="pi pi-filter-slash" severity="secondary" variant="outlined" (onClick)="onLimparFiltros()" />
+            <p-button icon="pi pi-search" pTooltip="Buscar" tooltipPosition="top" (onClick)="onBuscar()" />
+          </div>
+        </div>
+      </ng-template>
+    </p-toolbar>
+
+    <p-table
+      [value]="operacoes()"
+      [paginator]="true"
+      [rows]="porPagina()"
+      [totalRecords]="totalRegistros()"
+      [rowsPerPageOptions]="[5, 10, 20]"
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+      [showCurrentPageReport]="true"
+      [lazy]="true"
+      (onPage)="onPageChange($event)"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Cooperativa</th>
+          <th>Cooperado</th>
+          <th class="w-2">Valor</th>
+          <th class="w-2">Status</th>
+          <th class="w-1">Ações</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-operacao>
+        <tr>
+          <td>{{ operacao.cooperativaNome }}</td>
+          <td>{{ operacao.cooperadoNome }}</td>
+          <td>{{ operacao.valor | currency: 'BRL' }}</td>
+          <td>
+            <p-tag [value]="operacao.status | enumFormat" [severity]="severidade(operacao.status)" />
+          </td>
+          <td>
+            <p-menu #menu [model]="menuAcoes()" [popup]="true" appendTo="body" />
+            <p-button (click)="abrirMenu($event, operacao, menu)" icon="pi pi-ellipsis-v" size="small" />
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="5" class="text-center py-4">
+            <i class="pi pi-info-circle text-4xl text-500 mb-3 block"></i>
+            <p class="text-500 text-lg">Nenhuma operação encontrada.</p>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

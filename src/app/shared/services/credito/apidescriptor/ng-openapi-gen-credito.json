@@ -1,0 +1,6 @@
+{
+  "input": "src/app/shared/services/credito/apidescriptor/api-credito.json",
+  "output": "src/app/shared/services/credito/api",
+  "ignoreUnusedModels": true,
+  "excludeTags": ["Auditoria"]
+}

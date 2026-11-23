@@ -1,0 +1,227 @@
+{
+  "openapi": "3.1.0",
+  "info": { "title": "WProcesso Coop Credito API", "description": "Sistema de Gestão de Credito.", "version": "v1" },
+  "servers": [{ "url": "/sboot-wprocesso-coop-credito-app" }],
+  "tags": [{ "name": "Auditoria", "description": "Histórico de alterações das entidades" }],
+  "paths": {
+    "/operacoes-credito-rural/{id}/negar": {
+      "put": {
+        "tags": ["Operação de Crédito Rural"],
+        "summary": "Negar operação de crédito rural",
+        "operationId": "negar",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } }],
+        "requestBody": {
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/NegarCreditoRuralRequestDTO" } } },
+          "required": true
+        },
+        "responses": { "200": { "description": "Sucesso" } }
+      }
+    },
+    "/operacoes-credito-rural/{id}/desclassificar": {
+      "put": {
+        "tags": ["Operação de Crédito Rural"],
+        "summary": "Desclassificar operação de crédito rural",
+        "operationId": "desclassificar",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } }],
+        "requestBody": {
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/DesclassificarCreditoRuralRequestDTO" } } },
+          "required": true
+        },
+        "responses": { "200": { "description": "Sucesso" } }
+      }
+    },
+    "/operacoes-credito-rural/{id}/aprovar": {
+      "put": {
+        "tags": ["Operação de Crédito Rural"],
+        "summary": "Aprovar operação de crédito rural",
+        "operationId": "aprovar",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } }],
+        "responses": { "200": { "description": "Sucesso" } }
+      }
+    },
+    "/operacoes-credito-rural/contratar": {
+      "post": {
+        "tags": ["Operação de Crédito Rural"],
+        "summary": "Contratar crédito rural",
+        "operationId": "contratar",
+        "requestBody": {
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ContratarCreditoRuralRequestDTO" } } },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/OperacaoCreditoRuralResponseDTO" } } }
+          }
+        }
+      }
+    },
+    "/operacoes-credito-rural/{id}/buscar": {
+      "get": {
+        "tags": ["Operação de Crédito Rural"],
+        "summary": "Buscar operação de crédito rural",
+        "operationId": "buscar",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } }],
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/OperacaoCreditoRuralResponseDTO" } } }
+          }
+        }
+      }
+    },
+    "/operacoes-credito-rural/paginado": {
+      "get": {
+        "tags": ["Operação de Crédito Rural"],
+        "summary": "Pesquisar operações de crédito rural",
+        "operationId": "pesquisarPaginado",
+        "parameters": [
+          {
+            "name": "filtro",
+            "in": "query",
+            "required": true,
+            "schema": { "$ref": "#/components/schemas/FiltroOperacaoCreditoRuralRequestDTO" }
+          },
+          { "name": "cooperativaId", "in": "query", "required": false, "schema": { "type": "integer", "format": "int64" } },
+          { "name": "pageable", "in": "query", "required": true, "schema": { "$ref": "#/components/schemas/Pageable" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/PageResponseDTOOperacaoCreditoRuralResponseDTO" } }
+            }
+          }
+        }
+      }
+    },
+    "/auditoria": {
+      "get": {
+        "tags": ["Auditoria"],
+        "summary": "Buscar auditoria",
+        "description": "Retorna o histórico de alterações de uma entidade por ID",
+        "operationId": "buscarAuditoria",
+        "parameters": [
+          { "name": "dto", "in": "query", "required": true, "schema": { "$ref": "#/components/schemas/FiltroAuditoriaRequestDTO" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": { "schema": { "type": "array", "items": { "$ref": "#/components/schemas/AuditoriaResponseDTO" } } }
+            }
+          },
+          "400": {
+            "description": "Entidade não suportada ou parâmetros inválidos",
+            "content": {
+              "application/json": { "schema": { "type": "array", "items": { "$ref": "#/components/schemas/AuditoriaResponseDTO" } } }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "NegarCreditoRuralRequestDTO": {
+        "type": "object",
+        "properties": { "motivo": { "type": "string", "maxLength": 1000, "minLength": 0 } },
+        "required": ["motivo"]
+      },
+      "DesclassificarCreditoRuralRequestDTO": {
+        "type": "object",
+        "properties": {
+          "tipoDesclassificacao": { "type": "string", "enum": ["TOTAL", "PARCIAL"] },
+          "valorDesclassificado": { "type": "number", "minimum": 0.01 },
+          "motivo": { "type": "string", "maxLength": 1000, "minLength": 0 }
+        },
+        "required": ["motivo", "tipoDesclassificacao", "valorDesclassificado"]
+      },
+      "ContratarCreditoRuralRequestDTO": {
+        "type": "object",
+        "properties": {
+          "cooperadoId": { "type": "integer", "format": "int64" },
+          "valor": { "type": "number", "minimum": 0.01 },
+          "finalidade": { "type": "string", "maxLength": 1000, "minLength": 0 }
+        },
+        "required": ["cooperadoId", "finalidade", "valor"]
+      },
+      "OperacaoCreditoRuralResponseDTO": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "cooperativaId": { "type": "integer", "format": "int64" },
+          "cooperativaNome": { "type": "string" },
+          "cooperadoId": { "type": "integer", "format": "int64" },
+          "cooperadoNome": { "type": "string" },
+          "produtoCodigo": { "type": "string" },
+          "valor": { "type": "number" },
+          "finalidade": { "type": "string" },
+          "status": { "type": "string", "enum": ["SOLICITADA", "APROVADA", "NEGADA", "DESCLASSIFICADA"] },
+          "tipoDesclassificacao": { "type": "string", "enum": ["TOTAL", "PARCIAL"] },
+          "valorDesclassificado": { "type": "number" },
+          "motivo": { "type": "string" }
+        },
+        "required": [
+          "cooperadoId",
+          "cooperadoNome",
+          "cooperativaId",
+          "cooperativaNome",
+          "finalidade",
+          "id",
+          "produtoCodigo",
+          "status",
+          "valor"
+        ]
+      },
+      "FiltroOperacaoCreditoRuralRequestDTO": {
+        "type": "object",
+        "properties": {
+          "status": { "type": "string", "enum": ["SOLICITADA", "APROVADA", "NEGADA", "DESCLASSIFICADA"] },
+          "cooperadoNome": { "type": "string" },
+          "cooperativaNome": { "type": "string" }
+        }
+      },
+      "Pageable": {
+        "type": "object",
+        "properties": {
+          "page": { "type": "integer", "format": "int32", "minimum": 0 },
+          "size": { "type": "integer", "format": "int32", "minimum": 1 },
+          "sort": { "type": "array", "items": { "type": "string" } }
+        }
+      },
+      "PageResponseDTOOperacaoCreditoRuralResponseDTO": {
+        "type": "object",
+        "properties": {
+          "content": { "type": "array", "items": { "$ref": "#/components/schemas/OperacaoCreditoRuralResponseDTO" } },
+          "number": { "type": "integer", "format": "int32" },
+          "size": { "type": "integer", "format": "int32" },
+          "totalElements": { "type": "integer", "format": "int64" },
+          "totalPages": { "type": "integer", "format": "int32" },
+          "first": { "type": "boolean" },
+          "last": { "type": "boolean" },
+          "numberOfElements": { "type": "integer", "format": "int32" },
+          "empty": { "type": "boolean" }
+        }
+      },
+      "FiltroAuditoriaRequestDTO": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "entidade": { "type": "string", "minLength": 1 },
+          "data": { "type": "string", "format": "date" }
+        },
+        "required": ["entidade", "id"]
+      },
+      "AuditoriaResponseDTO": {
+        "type": "object",
+        "properties": {
+          "dataHora": { "type": "string", "format": "date-time" },
+          "tipo": { "type": "string", "enum": ["ADD", "MOD", "DEL"] },
+          "usuario": { "type": "string" },
+          "dados": {}
+        }
+      }
+    }
+  }
+}

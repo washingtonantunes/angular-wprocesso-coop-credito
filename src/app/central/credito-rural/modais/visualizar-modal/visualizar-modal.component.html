@@ -1,0 +1,49 @@
+<app-modal-layout>
+  <div body class="flex flex-column gap-3">
+    @if (carregando()) {
+      <div class="text-center py-4"><i class="pi pi-spin pi-spinner text-3xl text-500"></i></div>
+    } @else if (operacao(); as op) {
+      <div class="flex flex-column gap-1">
+        <span class="text-600 text-sm">Cooperativa</span>
+        <span class="text-900 font-medium">{{ op.cooperativaNome }}</span>
+      </div>
+      <div class="flex flex-column gap-1">
+        <span class="text-600 text-sm">Cooperado</span>
+        <span class="text-900 font-medium">{{ op.cooperadoNome }}</span>
+      </div>
+      <div class="flex flex-column gap-1">
+        <span class="text-600 text-sm">Valor</span>
+        <span class="text-900 font-medium">{{ op.valor | currency: 'BRL' }}</span>
+      </div>
+      <div class="flex flex-column gap-1">
+        <span class="text-600 text-sm">Finalidade</span>
+        <span class="text-900">{{ op.finalidade }}</span>
+      </div>
+      <div class="flex flex-column gap-1">
+        <span class="text-600 text-sm">Status</span>
+        <span class="text-900 font-medium">{{ op.status | enumFormat }}</span>
+      </div>
+      @if (op.status === 'DESCLASSIFICADA') {
+        <div class="flex flex-column gap-1">
+          <span class="text-600 text-sm">Tipo de desclassificação</span>
+          <span class="text-900">{{ op.tipoDesclassificacao ?? '' | enumFormat }}</span>
+        </div>
+        <div class="flex flex-column gap-1">
+          <span class="text-600 text-sm">Valor desclassificado</span>
+          <span class="text-900">{{ op.valorDesclassificado | currency: 'BRL' }}</span>
+        </div>
+      }
+      @if (op.motivo) {
+        <div class="flex flex-column gap-1">
+          <span class="text-600 text-sm">Motivo</span>
+          <span class="text-900">{{ op.motivo }}</span>
+        </div>
+      }
+    }
+  </div>
+
+  <span footer></span>
+  <span footer class="flex gap-2">
+    <p-button label="Fechar" severity="secondary" variant="outlined" (onClick)="onFechar()" />
+  </span>
+</app-modal-layout>

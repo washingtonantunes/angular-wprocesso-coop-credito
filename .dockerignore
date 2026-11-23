@@ -4,3 +4,5 @@ dist
 .git
 .vscode
 coverage
+# clients do OpenAPI são gerados dentro do container pelo build:docker
+src/app/shared/services/**/api

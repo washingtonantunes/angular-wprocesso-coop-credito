@@ -5,21 +5,11 @@
     "types": [],
     "preserveSymlinks": true,
     "paths": {
-      "@angular/*": [
-        "node_modules/@angular/*"
-      ],
-      "primeng/*": [
-        "node_modules/primeng/*"
-      ]
+      "@angular/*": ["node_modules/@angular/*"],
+      "primeng/*": ["node_modules/primeng/*"]
     }
   },
-  "files": [
-    "src/main.ts"
-  ],
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "src/**/*.spec.ts"
-  ]
+  "files": ["src/main.ts"],
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/**/*.spec.ts"]
 }

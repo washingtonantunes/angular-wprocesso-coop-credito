@@ -10,11 +10,11 @@ O contrato, o compartilhamento da sessão e a publicação independente estão e
 
 ## Documentação
 
-| Documento | Conteúdo |
-| --- | --- |
-| [docs/AMBIENTE.md](docs/AMBIENTE.md) | Comandos locais e Docker |
+| Documento                              | Conteúdo                               |
+| -------------------------------------- | -------------------------------------- |
+| [docs/AMBIENTE.md](docs/AMBIENTE.md)   | Comandos locais e Docker               |
 | [docs/ESTRUTURA.md](docs/ESTRUTURA.md) | Pastas, exposições e responsabilidades |
-| [docs/PADROES.md](docs/PADROES.md) | Rotas, menu e autorização |
-| [docs/LAYOUT.md](docs/LAYOUT.md) | Apresentação das telas |
-| [docs/PRIMENG.md](docs/PRIMENG.md) | Componentes visuais |
-| [docs/REGRAS.md](docs/REGRAS.md) | Regras desta aplicação remota |
+| [docs/PADROES.md](docs/PADROES.md)     | Rotas, menu e autorização              |
+| [docs/LAYOUT.md](docs/LAYOUT.md)       | Apresentação das telas                 |
+| [docs/PRIMENG.md](docs/PRIMENG.md)     | Componentes visuais                    |
+| [docs/REGRAS.md](docs/REGRAS.md)       | Regras desta aplicação remota          |

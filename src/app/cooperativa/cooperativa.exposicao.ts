@@ -5,7 +5,10 @@ export const ROTAS_PRODUTOS: RotaProduto[] = [
     path: 'credito/credito-rural',
     funcionalidade: 'CREDITO_RURAL_PAGINADO_COOPERATIVA',
     produtoCodigo: 'CREDITO_RURAL',
-    loadComponent: () => import('./credito-rural/prova-cooperativa.component').then((modulo) => modulo.ProvaCooperativaComponent),
+    loadComponent: () =>
+      import('./credito-rural/pages/operacao-lista/operacao-lista-cooperativa.component').then(
+        (modulo) => modulo.OperacaoListaCooperativaComponent,
+      ),
   },
 ];
 
